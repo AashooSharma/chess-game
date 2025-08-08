@@ -1,48 +1,64 @@
-let whiteTime = 300; // seconds (5 minutes)
-let blackTime = 300; // seconds (5 minutes)
-let whiteTimerInterval, blackTimerInterval;
+// timer.js
+
+let whiteTime = 600; // 10 min in seconds
+let blackTime = 600;
+let whiteInterval = null;
+let blackInterval = null;
+let firstMoveDone = false;
+
+const whiteTimerEl = document.getElementById("white-timer");
+const blackTimerEl = document.getElementById("black-timer");
+
+function updateDisplay() {
+    whiteTimerEl.textContent = formatTime(whiteTime);
+    blackTimerEl.textContent = formatTime(blackTime);
+}
+
+function formatTime(seconds) {
+    const m = Math.floor(seconds / 60);
+    const s = seconds % 60;
+    return `${m}:${s < 10 ? '0' : ''}${s}`;
+}
 
 function startWhiteTimer() {
     stopTimers();
-    whiteTimerInterval = setInterval(() => {
-        whiteTime--;
-        updateTimerDisplay("white-timer", whiteTime);
-        if (whiteTime <= 0) {
-            alert("⏳ White's time is over! Black wins!");
-            stopTimers();
+    whiteInterval = setInterval(() => {
+        if (whiteTime > 0) {
+            whiteTime--;
+            updateDisplay();
         }
     }, 1000);
 }
 
 function startBlackTimer() {
     stopTimers();
-    blackTimerInterval = setInterval(() => {
-        blackTime--;
-        updateTimerDisplay("black-timer", blackTime);
-        if (blackTime <= 0) {
-            alert("⏳ Black's time is over! White wins!");
-            stopTimers();
+    blackInterval = setInterval(() => {
+        if (blackTime > 0) {
+            blackTime--;
+            updateDisplay();
         }
     }, 1000);
 }
 
 function stopTimers() {
-    clearInterval(whiteTimerInterval);
-    clearInterval(blackTimerInterval);
+    clearInterval(whiteInterval);
+    clearInterval(blackInterval);
 }
 
-function updateTimerDisplay(elementId, timeInSeconds) {
-    const minutes = Math.floor(timeInSeconds / 60);
-    const seconds = timeInSeconds % 60;
-    document.getElementById(elementId).textContent =
-        `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
-}
+function handleTurnChange(currentTurn) {
+    if (!firstMoveDone) {
+        if (currentTurn === "black") {
+            firstMoveDone = true;
+            startBlackTimer(); // Start black's timer after white's first move
+        }
+        return;
+    }
 
-// This function will be called whenever the turn changes
-function switchTimer(turn) {
-    if (turn === "white") {
+    if (currentTurn === "white") {
         startWhiteTimer();
     } else {
         startBlackTimer();
     }
 }
+
+updateDisplay();
