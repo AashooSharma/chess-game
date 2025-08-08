@@ -1,0 +1,88 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #1a1a1a;
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Title */
+h1 {
+  font-size: 2.5rem;
+  color: #facc15; /* Yellow */
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Form Container */
+.form-container {
+  background-color: #2d2d2d;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Input Fields */
+.form-container label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.form-container input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: none;
+  background-color: #444;
+  color: white;
+}
+
+.form-container input:focus {
+  outline: 2px solid #facc15;
+}
+
+/* Start Button */
+.form-container button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  background-color: #facc15;
+  color: black;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.form-container button:hover {
+  background-color: #eab308;
+}
+
+/* Profile Icon */
+.profile-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #facc15;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
