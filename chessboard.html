@@ -1,37 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Chess Game</title>
-  <link rel="stylesheet" href="css/chessboard.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chess Game</title>
+    
+    <!-- Chessboard CSS -->
+    <link rel="stylesheet" href="css/chessboard.css">
+    
+    <!-- Optional Common Styles -->
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
-  <!-- Players & Timer -->
-  <div class="game-header">
-    <div class="player-info" id="white-player">
-      <span id="white-name"></span>
-      <span class="timer" id="white-timer">00:00</span>
-    </div>
-    <div class="player-info" id="black-player">
-      <span id="black-name"></span>
-      <span class="timer" id="black-timer">00:00</span>
-    </div>
-  </div>
+    <header>
+        <h1>Chess Game</h1>
+        <div class="players-info">
+            <div class="player">
+                <span id="white-player-name">White:</span>
+                <span id="white-timer">10:00</span>
+            </div>
+            <div class="player">
+                <span id="black-player-name">Black:</span>
+                <span id="black-timer">10:00</span>
+            </div>
+        </div>
+    </header>
 
-  <!-- Chessboard Container -->
-  <div id="chessboard-container">
-    <canvas id="board-layer"></canvas>     <!-- Fixed background board -->
-    <canvas id="highlight-layer"></canvas> <!-- Green highlight squares -->
-    <canvas id="piece-layer"></canvas>     <!-- Movable pieces -->
-  </div>
+    <main>
+        <div id="chessboard"></div>
+    </main>
 
-  <!-- Scripts -->
-  <script src="js/utils.js"></script>
-  <script src="js/rules.js"></script>
-  <script src="js/timer.js"></script>
-  <script src="js/chessboard.js"></script>
+    <!-- JavaScript Files -->
+    <script src="js/rules.js"></script>
+    <script src="js/timer.js"></script>
+    <script src="js/chessboard.js"></script>
 
+    <script>
+        // URL se players ke naam get karo
+        const params = new URLSearchParams(window.location.search);
+        const whitePlayer = params.get("white") || "Player 1";
+        const blackPlayer = params.get("black") || "Player 2";
+
+        document.getElementById("white-player-name").textContent = `White: ${whitePlayer}`;
+        document.getElementById("black-player-name").textContent = `Black: ${blackPlayer}`;
+
+        // Board render call
+        renderBoard();
+    </script>
 </body>
 </html>
