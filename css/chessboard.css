@@ -1,0 +1,89 @@
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #121212;
+  color: white;
+  padding: 20px;
+}
+
+#game-info {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 20px;
+}
+
+.player {
+  text-align: center;
+  flex: 1;
+}
+
+.player.active {
+  font-weight: bold;
+  color: #4ade80; /* Green for active player */
+}
+
+.timer {
+  font-size: 1.2rem;
+}
+
+/* Chessboard Wrapper (Fixed Back Layer) */
+.chessboard-wrapper {
+  position: relative;
+  width: 90vmin;
+  height: 90vmin;
+}
+
+/* Fixed Chessboard Squares */
+#chessboard {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.square {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4vmin;
+}
+
+.white {
+  background-color: #f0d9b5;
+}
+
+.black {
+  background-color: #b58863;
+}
+
+/* Middle Layer for Move Highlights */
+.square.highlight::after {
+  content: '';
+  position: absolute;
+  width: 90%;
+  height: 90%;
+  background-color: rgba(34, 197, 94, 0.5); /* green semi-transparent */
+  border-radius: 4px;
+  z-index: 2;
+}
+
+/* Top Layer for Pieces */
+.piece {
+  position: relative;
+  z-index: 3;
+  font-size: 5vmin;
+  cursor: pointer;
+  user-select: none;
+}
+
+.selected {
+  outline: 3px solid red;
+  border-radius: 4px;
+}
