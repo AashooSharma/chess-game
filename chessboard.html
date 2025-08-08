@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chess Game</title>
+  <link rel="stylesheet" href="css/chessboard.css">
+</head>
+<body>
+
+  <!-- Players & Timer -->
+  <div class="game-header">
+    <div class="player-info" id="white-player">
+      <span id="white-name"></span>
+      <span class="timer" id="white-timer">00:00</span>
+    </div>
+    <div class="player-info" id="black-player">
+      <span id="black-name"></span>
+      <span class="timer" id="black-timer">00:00</span>
+    </div>
+  </div>
+
+  <!-- Chessboard Container -->
+  <div id="chessboard-container">
+    <canvas id="board-layer"></canvas>     <!-- Fixed background board -->
+    <canvas id="highlight-layer"></canvas> <!-- Green highlight squares -->
+    <canvas id="piece-layer"></canvas>     <!-- Movable pieces -->
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/utils.js"></script>
+  <script src="js/rules.js"></script>
+  <script src="js/timer.js"></script>
+  <script src="js/chessboard.js"></script>
+
+</body>
+</html>
