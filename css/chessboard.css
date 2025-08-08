@@ -1,89 +1,79 @@
-body {
-  font-family: Arial, sans-serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #121212;
-  color: white;
-  padding: 20px;
+/* css/chessboard.css */
+
+/* Chessboard Container */
+#chessboard {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    width: 90vmin;
+    height: 90vmin;
+    max-width: 600px;
+    max-height: 600px;
+    border: 4px solid #333;
+    position: relative;
+    background-color: #fff;
 }
 
-#game-info {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  max-width: 600px;
-  margin-bottom: 20px;
+/* Squares */
+.square {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4vmin;
+    font-weight: bold;
+    cursor: pointer;
+    position: relative;
+    user-select: none;
 }
 
-.player {
-  text-align: center;
-  flex: 1;
+/* Colors of squares */
+.square.white {
+    background-color: #f0d9b5;
 }
 
-.player.active {
-  font-weight: bold;
-  color: #4ade80; /* Green for active player */
+.square.black {
+    background-color: #b58863;
+}
+
+/* Highlight for possible moves */
+.highlight::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 255, 0, 0.35);
+    z-index: 1; /* Middle layer */
+}
+
+/* Piece text on top of highlight */
+.square {
+    z-index: 2;
+}
+
+/* Responsive font size for pieces */
+@media (max-width: 768px) {
+    .square {
+        font-size: 6vmin;
+    }
+}
+
+@media (max-width: 480px) {
+    .square {
+        font-size: 8vmin;
+    }
+}
+
+/* Player Info and Timer Styling */
+.player-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-family: Arial, sans-serif;
 }
 
 .timer {
-  font-size: 1.2rem;
-}
-
-/* Chessboard Wrapper (Fixed Back Layer) */
-.chessboard-wrapper {
-  position: relative;
-  width: 90vmin;
-  height: 90vmin;
-}
-
-/* Fixed Chessboard Squares */
-#chessboard {
-  display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  grid-template-rows: repeat(8, 1fr);
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-}
-
-.square {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 4vmin;
-}
-
-.white {
-  background-color: #f0d9b5;
-}
-
-.black {
-  background-color: #b58863;
-}
-
-/* Middle Layer for Move Highlights */
-.square.highlight::after {
-  content: '';
-  position: absolute;
-  width: 90%;
-  height: 90%;
-  background-color: rgba(34, 197, 94, 0.5); /* green semi-transparent */
-  border-radius: 4px;
-  z-index: 2;
-}
-
-/* Top Layer for Pieces */
-.piece {
-  position: relative;
-  z-index: 3;
-  font-size: 5vmin;
-  cursor: pointer;
-  user-select: none;
-}
-
-.selected {
-  outline: 3px solid red;
-  border-radius: 4px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 5px 10px;
+    background-color: #eee;
+    border-radius: 5px;
 }
